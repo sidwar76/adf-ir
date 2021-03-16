@@ -87,6 +87,26 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -226,16 +246,14 @@
 			]
 		},
 		{
-	    		"name": "integrationRuntime1",
-    			"properties": {
-       		        "type": "SelfHosted",
-        		"typeProperties": {
-            		    "linkedInfo": {
-                		"resourceId": "/subscriptions/ee22c8f0-93df-4b47-925a-d337fef522fe/resourcegroups/siddharth_rg/providers/Microsoft.DataFactory/factories/sid01/integrationruntimes/integrationRuntime1",
-                		"authorizationType": "Rbac"
-                }
-        }
-    }
-}				
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		}
 	]
 }
